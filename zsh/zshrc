@@ -13,5 +13,47 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+### Mostly history options. Check 'man zshoptions' for help 
+setopt extended_history       # record timestamp of command in HISTFILE
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_find_no_dups      # Don't display hisory diplicates
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
+setopt share_history          # share command history data
+setopt append_history         # zsh sessions will append history file instead of replacing it
+setopt hist_reduce_blanks     # Remove superfluous blanks from each command being added
+setopt autocd                 # "Running" a path as a command will cd into that path
+###
+
+### Quality of life
+# Enable control-s and control-q
+stty -ixon
+# Don't highlight pasted text differently
+zle_highlight=('paste:none')
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+# Command auto-correction for miss-spellings.
+ENABLE_CORRECTION="true"
+###
+
 eval "$(starship init zsh)"
 
+export ZDOTDIR=~/dotfiles/zsh
+source ~/dotfiles/zsh/zsh_functions.zsh
+
+# TODO: figure out what these 3 lines do!
+autoload -Uz compinit
+compinit  # Especially this one. This _must_ come before fzf-tab plugin
+zmodload zsh/complist
+_comp_options+=(globdots)		# Include hidden files.
+
+zsh_add_plugin "Aloxaf/fzf-tab"
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "ael-code/zsh-colored-man-pages" "colored-man-pages"
+zle -N autosuggest-accept
+bindkey '^ ' autosuggest-accept
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+# Autosuggestions configuration
+
+source ~/dotfiles/fzf/fzf.zsh
