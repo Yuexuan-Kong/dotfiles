@@ -9,8 +9,9 @@ function install_stuff() {
 
 
 function create_symlinks() {
-	sudo ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
-	sudo ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
+	sudo ln -fs ~/dotfiles/starship.toml ~/.config/starship.toml
+	sudo ln -fs ~/dotfiles/zsh/zshrc ~/.zshrc
+	sudo ln -fs ~/dotfiles/nvim ~/.config/
 }
 
 install_stuff
