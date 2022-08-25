@@ -89,6 +89,20 @@ require('packer').startup(function()
     use 'nvim-lualine/lualine.nvim'
     use 'seblj/nvim-tabline'
 
+    -- surroundings
+    use({"kylechui/nvim-surround",
+      tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+      config = function()
+          require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
+        })
+      end
+    })
+
+    -- autopairs
+    use {"windwp/nvim-autopairs",
+      config = function() require("nvim-autopairs").setup {} end
+    }
     -- If packer has just been installed, download plugins
     if PACKER_BOOTSTRAP then require('packer').sync() end
   end
@@ -97,3 +111,4 @@ require('packer').startup(function()
 require"plugins.cmp"
 require"plugins.lsp"
 require"plugins.lualine"
+

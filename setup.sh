@@ -7,6 +7,8 @@ function install_stuff() {
 	brew install bat
 	brew tap homebrew/cask-fonts && brew install --cask font-fira-mono-nerd-font
   brew install npm  # required for neovim
+  brew install lua-language-server
+  brew install texlive
 }
 
 

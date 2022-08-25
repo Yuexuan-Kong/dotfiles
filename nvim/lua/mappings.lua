@@ -8,15 +8,25 @@ vim.g.mapleader = ' '
 
 local keymap = vim.api.nvim_set_keymap
 
--- keyamp(mode, lhs, rhs, options)
--- <cr> = carriage return = enter
-keymap("n", "H", ":tabprevious<cr>", opts)
-keymap("n", "L", ":tabnext<cr>", opts)
-
 
 ------- Which-key territory
 
 local wk = require("which-key")
+
+-- Neovim
+wk.register({
+  ['<leader>'] = {
+    v = {
+      name = 'Neovim',
+      ["H"] = {":tabprevious<cr>", "Previous tab"},
+      ["L"] = {":tabnext<cr>", "Next tab"},
+      ["<C-Up>"] = {":resize -5<cr>", "Resize vertical line to the left"},
+      ["<C-Down>"] = {":resize +5<cr>", "Resize vertical line to the right"},
+      ["<C-Left>"] = {":vertical resize -5<cr>", "Resize horizontal line to up"},
+      ["<C-Right>"] = {":vertical resize +5<cr>", "Resize vertical line to the down"}
+    }
+  }
+})
 
 -- Telescope
 wk.register({

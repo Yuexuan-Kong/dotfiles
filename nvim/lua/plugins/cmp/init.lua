@@ -124,3 +124,10 @@ cmp.setup.cmdline('/', {
     { name = 'buffer' }
   }
 })
+
+-- Add indent after pressing <enter> inside of a ()
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
