@@ -3,8 +3,10 @@ function install_stuff() {
 	brew install fzf
 	brew install exa
 	brew install fd
+  brew install rg  # Better grep
 	brew install bat
 	brew tap homebrew/cask-fonts && brew install --cask font-fira-mono-nerd-font
+  brew install npm  # required for neovim
 }
 
 

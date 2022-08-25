@@ -18,3 +18,4 @@ o.wrap = false               -- Whether to wrap text by default (Plz don't)
 o.conceallevel = 2           -- Allows text to be "concealed"
 o.splitbelow = false         -- Horizontal splits always split above
 o.splitright = true          -- Vertical splits always split to the right
+o.termguicolors = false      -- For proper color rendering
