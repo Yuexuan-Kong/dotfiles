@@ -1,5 +1,6 @@
 function install_stuff() {
 	brew install starship
+  brew install neovim
 	brew install fzf
 	brew install exa
 	brew install fd

@@ -2,6 +2,6 @@
 -- Remember your 🥚❤️
 require 'options'
 require 'util'
-require 'mappings'
 require 'plugins'
+require 'mappings'
 require 'style'
