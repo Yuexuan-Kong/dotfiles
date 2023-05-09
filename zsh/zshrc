@@ -57,3 +57,4 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 # Autosuggestions configuration
 
 source ~/dotfiles/fzf/fzf.zsh
+

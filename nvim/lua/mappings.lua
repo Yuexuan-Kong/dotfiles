@@ -20,6 +20,8 @@ wk.register({
       name = 'Neovim',
       ["H"] = {":tabprevious<cr>", "Previous tab"},
       ["L"] = {":tabnext<cr>", "Next tab"},
+      ["l"] = {"<C-w>l", "window on the right"},
+      ["h"] = {"<C-w>h", "window on the left"},
       ["<C-Up>"] = {":resize -5<cr>", "Resize vertical line to the left"},
       ["<C-Down>"] = {":resize +5<cr>", "Resize vertical line to the right"},
       ["<C-Left>"] = {":vertical resize -5<cr>", "Resize horizontal line to up"},
@@ -67,6 +69,7 @@ wk.register({
       d = {string.format("<cmd>lua vim.lsp.buf.definition(%s)<CR>", vertical_layout), "Go to definition"},
       D = {string.format("<cmd>lua vim.lsp.buf.declaration(%s)<CR>", vertical_layout), "Go to declaration"},
       i = {string.format("<cmd>lua vim.lsp.buf.implementation(%s)<CR>", vertical_layout), "Go to implementation"},
+      -- TODO: implementation is not working
       r = {string.format("<cmd>lua require('telescope.builtin').lsp_references(%s)<cr>", vertical_layout), "Show references"},
     },
   }

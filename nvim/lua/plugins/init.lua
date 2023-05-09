@@ -32,16 +32,28 @@ require('packer').startup(function()
 
     -- Telescope stuff
     use 'nvim-telescope/telescope.nvim'  -- The one and only
-
-    use {'folke/which-key.nvim', config = function() require('which-key').setup() end}         -- Hints for keymaps
-
+    use {
+      "folke/which-key.nvim",
+      config = function()
+        vim.o.timeout = true
+        vim.o.timeoutlen = 500
+        require("which-key").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    }
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'} -- Colour coding tree sitter
 
     -- TODO: fix!
     use {
       'kyazdani42/nvim-tree.lua',
       requires = { 'kyazdani42/nvim-web-devicons' }, -- Optional for file icons
-      config = function() require'nvim-tree'.setup() end,
+      config = function() require'nvim-tree'.setup({
+        filters = { custom = { "^.git$" } },
+        git = { ignore = false }
+      }) end,
       tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
 
@@ -52,6 +64,7 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-path'                    -- Filesystem path
     use 'hrsh7th/cmp-nvim-lsp'                -- LSP completion
     use 'hrsh7th/cmp-nvim-lsp-signature-help' -- Show function signature as typing happens
+    use 'hrsh7th/cmp-cmdline'
     use 'saadparwaiz1/cmp_luasnip'            -- LSP completion
 
     -- Snippets!
@@ -76,6 +89,7 @@ require('packer').startup(function()
         require("mason").setup()
         require("mason-lspconfig").setup({
           automatic_installation = true,  -- If an LSP is configured in these dotfiles, it will be installed
+          ensure_installed = {'pyright'}
         })
       end
     }
@@ -103,6 +117,21 @@ require('packer').startup(function()
     use {"windwp/nvim-autopairs",
       config = function() require("nvim-autopairs").setup {} end
     }
+
+    -- comment lines 
+    use {'numToStr/Comment.nvim',
+      config = function()
+          require('Comment').setup()
+      end
+    }
+
+    -- show images in nvim
+    use {'edluffy/hologram.nvim',
+      config = function() require("hologram").setup ({
+        auto_display = true,
+      })
+    end
+  }
     -- If packer has just been installed, download plugins
     if PACKER_BOOTSTRAP then require('packer').sync() end
   end
@@ -111,4 +140,7 @@ require('packer').startup(function()
 require"plugins.cmp"
 require"plugins.lsp"
 require"plugins.lualine"
+
+
+
 

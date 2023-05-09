@@ -45,9 +45,9 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
 		["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-k>"] = cmp.mapping.select_prev_item(),
-    ['<A-P>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-    ['<A-N>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-S>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
     ['<C-E>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
@@ -106,15 +106,23 @@ cmp.setup({
   },
 })
 
--- To show completions when typing commands via `:` 
-cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = 'path'},
-      { name = 'cmdline'},
-    })
-})
+  -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+--  cmp.setup.cmdline({ '/', '?' }, {
+--    mapping = cmp.mapping.preset.cmdline(),
+--    sources = {
+--      { name = 'buffer' }
+--    }
+--  })
 
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
 
 
 -- To show completions when searching via '/'
