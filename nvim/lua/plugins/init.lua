@@ -74,7 +74,7 @@ require('packer').startup(function()
     -- Colorscheme
     use {"navarasu/onedark.nvim", config = function() 
         require('onedark').setup({
-          style = "warm",
+          style = "deep",
           toggle_style_key = '<leader><leader><leader>',
         })
         require('onedark').load()
@@ -113,6 +113,22 @@ require('packer').startup(function()
       end
     })
 
+    -- add lines for indent to look prettier
+    use ({
+      "lukas-reineke/indent-blankline.nvim",
+      config = function()
+        vim.opt.list = true
+        -- vim.opt.listchars:append "space:⋅"
+        vim.opt.listchars:append "eol:↴"
+
+        require("indent_blankline").setup {
+            space_char_blankline = " ",
+            show_current_context = true,
+            show_current_context_start = true,
+          }
+      end
+    })
+
     -- autopairs
     use {"windwp/nvim-autopairs",
       config = function() require("nvim-autopairs").setup {} end
@@ -140,7 +156,3 @@ require('packer').startup(function()
 require"plugins.cmp"
 require"plugins.lsp"
 require"plugins.lualine"
-
-
-
-

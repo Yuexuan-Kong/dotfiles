@@ -8,8 +8,9 @@ if not snip_status_ok then return end
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
+-- to be fixed
 local kind_icons = {
-  Text = "",
+  Text = "f0ae7",
   Method = "m",
   Function = "",
   Constructor = "",
